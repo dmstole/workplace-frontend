@@ -1,0 +1,8 @@
+{
+  "name": "front-end",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,29 @@
+<ion-tabs>
+
+  <ion-header>
+    <ion-toolbar>
+      <div class="menu-top">
+        <img class="wptimg-logo-img-top" src="assets/imgs/bg.png" />
+        <ion-icon name="exit" (click)="logout()"></ion-icon>
+      </div>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button (click)="goTo('tabs/search-places')">
+      <ion-icon ios="ios-globe" md="md-globe"></ion-icon>
+      <ion-label>Localize</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button (click)="goTo('tabs/places')">
+      <ion-icon name="locate"></ion-icon>
+      <ion-label>Novo Espaço</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button (click)="goTo('tabs/profile')">
+      <ion-icon name="contact"></ion-icon>
+      <ion-label>Meus Dados</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+
+</ion-tabs>

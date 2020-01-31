@@ -1,0 +1,23 @@
+<ion-content>
+    <ion-card *ngFor="let place of filteredPlaces$ | async" (click)="goToSchedule(place)">
+        <ion-card-header>
+            <ion-card-title> {{place.name}} </ion-card-title>
+            <ion-card-subtitle>
+                <p> {{ place.workingDays }} de {{ place.openingHours }} às {{ place.closingHours }} </p>
+            </ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+            <p>{{ place.email }} - {{ place.telephone }}</p>
+            <p>
+                <small>
+                    {{place.streetName}}, {{place.addressNumber}}
+                    <span *ngIf="!!place.complement"> - {{place.complement}}</span>
+                </small>
+                <small>{{place.postalCode}} - {{place.region}}</small>
+            </p>
+            <p>
+                <small>{{place.city}} - {{place.state}}</small>
+            </p>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

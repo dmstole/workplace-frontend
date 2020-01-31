@@ -1,0 +1,59 @@
+<ion-content>
+
+    <form [formGroup]="formSchedule" (ngSubmit)="search(formSchedule.value)" novalidate>
+
+        <div class="grid">
+
+            <h4>Agendamento de Espaço</h4>
+
+            <ion-item>
+                <ion-label position="floating">departamento:</ion-label>
+                <ion-select formControlName="departament" placeholder="Selecione" (ionChange)="loadRooms()" interface="popover">
+                    <ion-select-option *ngFor="let departament of departaments$ | async" value="{{departament.id}}">
+                        {{departament.name}}
+                    </ion-select-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating">sala:</ion-label>
+                <ion-select formControlName="room" placeholder="Selecione" [disabled]="roomDisable$ | async" 
+                    (ionChange)="loadTables()" interface="popover">
+                    <ion-select-option *ngFor="let room of rooms$ | async" value="{{room.id}}">
+                        {{room.name}}
+                    </ion-select-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating">mesa:</ion-label>
+                <ion-select formControlName="table" placeholder="Selecione" [disabled]="tableDisable$ | async" interface="popover">
+                    <ion-select-option *ngFor="let table of tables$ | async" value="{{table.id}}">
+                        {{table.name}}
+                    </ion-select-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating">Usar todas as cadeiras?</ion-label>
+                <ion-checkbox [(value)]="selectAllPositions"></ion-checkbox>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="stacked">Quantidade de Cadeiras</ion-label>
+                <ion-input type="number" formControlName="totalPositions"></ion-input>
+            </ion-item>
+
+            <button type="submit" class="btn-primary" [disabled]="!formSchedule.valid">
+                Cadastrar
+            </button>
+
+            <button type="button" class="btn-secondy" (click)="goLoginPage()">
+                Cancelar
+            </button>
+
+        </div>
+
+    </form>
+
+</ion-content>

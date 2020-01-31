@@ -1,0 +1,21 @@
+.wptimg-logo-img {
+    width: 275px;
+    align-content: center;
+}
+
+.wptimg-login-footer {
+    bottom: 0px;
+    color: #fff;
+    padding: 15px;
+    position: absolute;
+    background-color: #3BB0A2;
+    width: 100%;
+    display: grid;
+    grid-gap: 0px;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.wptimg-login-footer > span,
+.wptimg-login-footer > small {
+    text-align: center;
+}

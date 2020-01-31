@@ -1,0 +1,45 @@
+<ion-content>
+
+    <div class="grid">
+
+        <div class="mt-50">
+            <img class="center" src="assets/imgs/bg.png" />
+        </div>
+
+        <form [formGroup]="formLogin" validate (ngSubmit)="onAuthenticated(formLogin.value)">
+
+            <ion-list lines="full" class="ion-no-margin ion-no-padding">
+
+                <ion-item>
+                    <ion-label position="floating">e-mail:</ion-label>
+                    <ion-input autocomplete="off" type="text" formControlName="email" autofocus>
+                    </ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label position="floating">senha:</ion-label>
+                    <ion-input autocomplete="off" type="password" formControlName="password"></ion-input>
+                </ion-item>
+
+                <button type="submit" class="btn-primary" [disabled]="!formLogin.valid">
+                    Entrar
+                </button>
+
+                <button type="button" class="btn-secondy">
+                    Esqueci minha senha
+                </button>
+
+                <button type="button" class="btn-secondy" (click)="onCreate()">
+                    Cadastre-se
+                </button>
+
+            </ion-list>
+        </form>
+
+    </div>
+
+    <div class="wptimg-login-footer flex">
+        <small>developed by</small>
+        <span>@dsmiranda</span>
+    </div>
+</ion-content>
