@@ -1,12 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-profile',
   templateUrl: 'profile.page.html',
   styleUrls: ['profile.page.scss']
 })
-export class ProfilePage {
+export class ProfilePage implements OnInit {
 
-  constructor() {}
+  constructor() { }
+
+  ngOnInit(): void {
+    throw new Error("Method not implemented.");
+  }
+
+  ionViewDidEnter() {
+    this.ngOnInit();
+  }
 
 }

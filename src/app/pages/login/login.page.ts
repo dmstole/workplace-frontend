@@ -1,27 +1,30 @@
+import { Router } from "@angular/router";
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { LoadingController, NavController } from '@ionic/angular';
+import { FormGroup, FormBuilder } from "@angular/forms";
 
-import { LoginModel } from 'src/app/models/login.model';
-import { AuthService } from 'src/app/core/auth/auth.service';
-import { configureValidator, ValidatorPattern } from 'src/app/core/validator/custom.validator';
+import { LoginModel } from "src/app/models/login.model";
+import { AuthService } from "src/app/core/auth/auth.service";
+import { LoaderService } from "src/app/core/loader/loader.service";
+import { ResponseErrorModel } from 'src/app/models/response.model';
+import { MessageService } from "src/app/core/message/message.service";
+import { configureValidator } from "src/app/core/validator/custom.validator";
 
 @Component({
-    selector: 'app-login',
+    selector: "app-login",
     templateUrl: "login.html",
-    styleUrls: ['login.page.scss']
+    styleUrls: ["login.page.scss"]
 })
 export class LoginPage implements OnInit {
 
-    formLogin: FormGroup;
     login: LoginModel;
+    formLogin: FormGroup;
 
     constructor(
+        private router: Router,
         private formBuilder: FormBuilder,
-        private navCtrl: NavController,
-        private loadingCtrl: LoadingController,
-        // private viewCtrl: ViewController,
         private authService: AuthService,
+        private loaderService: LoaderService,
+        private messageService: MessageService,
     ) { }
 
     /**
@@ -34,20 +37,8 @@ export class LoginPage implements OnInit {
         this.configureFormGroup();
     }
 
-    /**
-     * Login - When authenticated then redirect to home else show modal invalid login
-     *
-     * @memberof LoginPage
-     * @author Diogo A. Miranda
-     */
-    public onAuthenticated(data: { email: string, password: string }): void {
-        this.authService.authenticate(data)
-            .subscribe(() => {
-                this.navCtrl.navigateForward("/tabs");
-            }, (error) => {
-                console.info(typeof error);
-                alert(error);
-            });
+    ionViewDidEnter() {
+        this.ngOnInit();
     }
 
     /**
@@ -58,8 +49,8 @@ export class LoginPage implements OnInit {
      */
     configureFormGroup(): void {
         this.formLogin = this.formBuilder.group({
-            email: ['', configureValidator(true, 150, 4)],
-            password: ['', configureValidator(true, 6, 6)]
+            email: ["", configureValidator(true, 150, 4)],
+            password: ["", configureValidator(true, 6, 6)]
         });
 
         this.formLogin.patchValue({
@@ -68,7 +59,44 @@ export class LoginPage implements OnInit {
         });
     }
 
-    onCreate() {
-        this.navCtrl.navigateForward("/new-user");
+    /**
+     * Login - When authenticated then redirect to home else show modal invalid login
+     *
+     * @memberof LoginPage
+     * @author Diogo A. Miranda
+     */
+    public onAuthenticated(data: { email: string, password: string }): void {
+        this.loaderService.show();
+        this.authService.authenticate(data)
+            .subscribe(() => {
+                this.loaderService.hide();
+                this.router.navigate(["/tabs"]);
+            }, (error: ResponseErrorModel) => {
+                this.loaderService.hide();
+                this.messageService.error(error);
+            });
+
+        this.formLogin.reset();
     }
+
+    /**
+     * Login - Go new user page
+     *
+     * @memberof LoginPage
+     * @author Diogo A. Miranda
+     */
+    goNewUserPage() {
+        this.router.navigate(["/new-user"]);
+    }
+
+    /**
+     * Login - Go request reset password page
+     *
+     * @memberof LoginPage
+     * @author Diogo A. Miranda
+     */
+    goRequestResetPassword() {
+        this.router.navigate(["/request-reset-password"]);
+    }
+
 }

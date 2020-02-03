@@ -1,0 +1,95 @@
+<ion-content>
+
+  <form [formGroup]="formPlace" (ngSubmit)="onSave(formPlace.value)" novalidate>
+
+    <div class="grid">
+
+      <h1 class="title">
+        Novo Espaço
+      </h1>
+
+      <ion-item>
+        <ion-label position="floating">nome:</ion-label>
+        <ion-input autocomplete="off" type="text" formControlName="name" autofocus>
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">email:</ion-label>
+        <ion-input type="text" formControlName="email">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">telefone:</ion-label>
+        <ion-input type="text" formControlName="telephone">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">rua/avenida:</ion-label>
+        <ion-input type="text" formControlName="streetName"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">número:</ion-label>
+        <ion-input type="number" formControlName="addressNumber"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">complemento:</ion-label>
+        <ion-input type="text" formControlName="complement"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">bairro:</ion-label>
+        <ion-input type="text" formControlName="region"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">cep:</ion-label>
+        <ion-input type="text" formControlName="postalCode"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">cidade:</ion-label>
+        <ion-input type="text" formControlName="city"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">estado:</ion-label>
+        <ion-input type="text" formControlName="state"></ion-input>
+      </ion-item>
+
+      <h1 class="title">
+        Hora de Funcionamento
+      </h1>
+
+      <ion-item>
+        <ion-label position="floating">Início:</ion-label>
+        <ion-input type="text" formControlName="openingHours"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Termina:</ion-label>
+        <ion-input type="text" formControlName="closingHours"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Dias da Semana:</ion-label>
+        <ion-input type="text" formControlName="workingDays"></ion-input>
+      </ion-item>
+
+      <button type="submit" class="btn-primary" [disabled]="!formPlace.valid">
+        Entrar
+      </button>
+
+      <button type="button" class="btn-secondy" (click)="goToHomePage()">
+        Cancelar
+      </button>
+
+    </div>
+
+  </form>
+
+</ion-content>

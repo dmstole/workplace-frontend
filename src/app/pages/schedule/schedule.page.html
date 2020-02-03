@@ -1,14 +1,17 @@
 <ion-content>
 
-    <form [formGroup]="formSchedule" (ngSubmit)="search(formSchedule.value)" novalidate>
+    <form [formGroup]="formSchedule" (ngSubmit)="reserve(formSchedule.value)" novalidate>
 
         <div class="grid">
 
-            <h4>Agendamento de Espaço</h4>
+            <h1 class="title">
+                Reserva de Espaço
+            </h1>
 
             <ion-item>
                 <ion-label position="floating">departamento:</ion-label>
-                <ion-select formControlName="departament" placeholder="Selecione" (ionChange)="loadRooms()" interface="popover">
+                <ion-select formControlName="departament" placeholder="Selecione" (ionChange)="loadRooms()"
+                    interface="popover">
                     <ion-select-option *ngFor="let departament of departaments$ | async" value="{{departament.id}}">
                         {{departament.name}}
                     </ion-select-option>
@@ -17,7 +20,7 @@
 
             <ion-item>
                 <ion-label position="floating">sala:</ion-label>
-                <ion-select formControlName="room" placeholder="Selecione" [disabled]="roomDisable$ | async" 
+                <ion-select formControlName="room" placeholder="Selecione" [disabled]="roomDisable$ | async"
                     (ionChange)="loadTables()" interface="popover">
                     <ion-select-option *ngFor="let room of rooms$ | async" value="{{room.id}}">
                         {{room.name}}
@@ -35,20 +38,25 @@
             </ion-item>
 
             <ion-item>
-                <ion-label position="floating">Usar todas as cadeiras?</ion-label>
-                <ion-checkbox [(value)]="selectAllPositions"></ion-checkbox>
+                <ion-label position="stacked">Quantidade de Cadeiras</ion-label>
+                <ion-input type="number" formControlName="totalWorkPositions" [disabled]="selectedWorkTotalPosition"></ion-input>
             </ion-item>
 
             <ion-item>
-                <ion-label position="stacked">Quantidade de Cadeiras</ion-label>
-                <ion-input type="number" formControlName="totalPositions"></ion-input>
+                <ion-label position="floating">Data Início</ion-label>
+                <ion-datetime formControlName="startDate" displayFormat="DD/MM/YYYY"></ion-datetime>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating">Data Final</ion-label>
+                <ion-datetime formControlName="endDate" displayFormat="DD/MM/YYYY"></ion-datetime>
             </ion-item>
 
             <button type="submit" class="btn-primary" [disabled]="!formSchedule.valid">
-                Cadastrar
+                Agendar
             </button>
 
-            <button type="button" class="btn-secondy" (click)="goLoginPage()">
+            <button type="button" class="btn-secondy" (click)="goHomePage()">
                 Cancelar
             </button>
 

@@ -23,17 +23,17 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () =>
-              import('../search-places/search-places.module').then(m => m.SearchPlaceModule)
+              import('../search-places/search-places.module').then(m => m.SearchPlacePageModule)
           }
         ]
       },
       {
-        path: 'places',
+        path: 'reservations',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../places/places.module').then(m => m.PlacesPageModule)
+              import('../reservations/reservations.module').then(m => m.ReservationsPageModule)
           }
         ]
       },
@@ -52,7 +52,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('../schedule/schedule.module').then(m => m.ScheduleModule)
+            loadChildren: () => import('../schedule/schedule.module').then(m => m.SchedulePageModule)
           }
         ]
       },

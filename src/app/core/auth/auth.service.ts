@@ -6,7 +6,7 @@ import { environment } from "../../../environments/environment";
 
 import { UserService } from '../../services/user.service';
 
-import { LoginModel } from '../../models/login.model';
+import { LoginModel, RequestResetPasswordModel, ReceivedCodeConfirmationModel, RegisterNewPassword } from '../../models/login.model';
 
 @Injectable({
     providedIn: 'root'
@@ -23,7 +23,22 @@ export class AuthService {
                 tap((res: { access_token: any; }) => {
                     const authToken = res.access_token;
                     this.userService.setToken(authToken);
-                    console.log(`User ${loginData.email} authenticated with token ${authToken}`);
                 }));
+    }
+
+    requestResetPassword(data: RequestResetPasswordModel) {
+        return this.httpClient.post(environment.apiUrl.requestResetPasword, data);
+    }
+
+    resetPassword(data: LoginModel) {
+        return this.httpClient.post(environment.apiUrl.resetPassword, data);
+    }
+
+    receivedCodeConfirmation(data: ReceivedCodeConfirmationModel) {
+        return this.httpClient.post(environment.apiUrl.receivedCodeConfirmation, data);
+    }
+
+    registerNewPassword(data: RegisterNewPassword) {
+        return this.httpClient.post(environment.apiUrl.registerNewPassword, data);
     }
 }

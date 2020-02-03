@@ -35,7 +35,7 @@
 .grid {
     width: 100%;
     display: grid;
-    grid-gap: 20px;
+    grid-gap: 5px;
     grid-template-columns: repeat(1, 1fr);
 }
 
@@ -53,23 +53,55 @@
     margin-top: 50px;
 }
 
+h1.title {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #3c5782;
+    font-weight: bold;
+}
+
+h3.description {
+    margin: 0px;
+    font-size: 15px;
+    color: #585858;
+}
+
+h1.title,
+h3.description {
+  display: flex;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
 .btn-primary {
     color: #fff;
-    padding: 15px;
-    border-radius: 5px;
     background-color: #3BB0A2;
 }
 
 .btn-secondy {
-    color: #232323;
-    padding: 15px;
-    border-radius: 5px;
+    color: #979797;
     background-color: #fff;
+    border: solid 1px #e2e2e2;
+}
+
+.btn-third {
+    color: #3BB0A2;
+    background-color: #fff;
+    border: solid 1px #b3b3b3;
+}
+
+.btn-primary,
+.btn-secondy,
+.btn-third {
+    padding: 15px;
+    margin: 0px 15px;
+    font-weight: bold;
+    border-radius: 2px;
 }
 
 form {
     width: 100%;
-    padding: 25px;  
+    padding: 0px;
 }
 
 form ion-list {

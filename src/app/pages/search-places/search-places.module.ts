@@ -16,4 +16,4 @@ import { SearchPlacesPage } from './search-places.page';
   ],
   declarations: [SearchPlacesPage],
 })
-export class SearchPlaceModule {}
+export class SearchPlacePageModule {}

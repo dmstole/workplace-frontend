@@ -16,6 +16,7 @@ export class DepartamentService {
     ) { }
 
     load(placeId: number) {
+        this.departamentSubject.next([]);
         this.get(placeId)
             .subscribe(
                 (list) => this.departamentSubject.next(list),

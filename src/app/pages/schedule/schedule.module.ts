@@ -16,4 +16,4 @@ import { SchedulePage } from './schedule.page';
     ],
     declarations: [SchedulePage],
 })
-export class ScheduleModule { }
+export class SchedulePageModule { }
